@@ -88,10 +88,10 @@ fragment.appendChild(repeatDown);
 
 // now make multiplyRows - or in this case without a rows down, make add rows by self
 
+let gridSize = 16;
 
-
-function makeBox(gridSize) {
-     gridSize = 16;
+function makeBox() {
+     
 //console.log(gridSize);
    const totalBoxes = gridSize * gridSize;
   // console.log(totalBoxes); 256
@@ -100,10 +100,11 @@ function makeBox(gridSize) {
     for (let j = 0; j < totalBoxes; j++) { // this means i should loop 16 times, or 16 rows
         const repeatBoxes = make1Square();
         repeatBoxes.classList.add("repeat-boxes");
-        //repeatBoxes.style.height = `calc(100% / ${gridSize})`;
+       // repeatBoxes.style.height = `calc(100% / ${gridSize})`;
        // console.log(repeatBoxes.style.height);
-        //repeatBoxes.style.width = `calc(100% / ${gridSize})`;
-       // console.log(repeatBoxes.style.width);
+       // repeatBoxes.style.width = `calc(100% / ${gridSize})`;
+      // console.log(repeatBoxes.style.width);
+      repeatBoxes.style.flexBasis = `calc(100% / ${gridSize})`;
         //console.log(repeatBoxes);
         tempHoldingBox.appendChild(repeatBoxes);
 }
