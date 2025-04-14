@@ -14,13 +14,14 @@ body {
     width: auto;
  /* flex: 1 0 auto; */
  flex-shrink: 0;
-  aspect-ratio: 1;
+
      
 }
 
 
 #square-div {
-
+box-sizing: border-box;
+/*width: cacl(100% / 16);*/
 border-color: black;
 border-width: thin;
 border-style: solid;
