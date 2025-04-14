@@ -19,18 +19,22 @@ return squareDiv;
 
 // create document fragment so whatever inside stays in memory
 
-const fragment = new DocumentFragment();
+
 
 // now that 1 square div is created i need to create 16 rows of 16 boxes
 // this means multiply the element by itself 16 times by 16 times
 // so create a function called makeRows
 
+// not sure if i need this now
+/*
 function makeRowsAcross(a) {
 // i need a Math.something method
 // Math.imul does multiplication
 
 a = 16;
 //b = 16;
+
+let repeatAcross;
 
 //let rowByRows = Math.imul(a, b); // should = 256
 
@@ -39,22 +43,28 @@ a = 16;
 // now create a loop where sqaureDiv is created 
 
 for (let i = 0; i < a; i++) { // this means i should loop 16 times, or 16 rows across
-  const repeatAcross = make1Square(); // this makes the make square function run i times
-fragment.appendChild(repeatAcross);
+  repeatAcross = make1Square(); // this makes the make square function run i times
+  //make1Square();
+//fragment.appendChild(repeatAcross);
 //document.querySelector('.holding-box').appendChild(make);
-//console.log(make); // prints sqaureDiv 16 times if no return statement
+//console.log(repeatAcross); // prints sqaureDiv 16 times if no return statement
 // don't put return inhere or it doesn't loop;
 }
 
 //return document.querySelector('.holding-box'); // have to return what it is
-return fragment;
+//return fragment;
+//console.log(repeatAcross); //coming back 16 times
+return repeatAcross;
 }
+//makeRowsAcross();
 
 
-//console.log(makeRowsAcross()); // returns undefined. why
+//console.log(makeRowsAcross()); // returns undefined if nothing is returned
 
 //fragment.appendChild(makeRowsAcross()); // doesn't work
 //document.querySelector('.holding-box').appendChild(makeRowsAcross());
+*/
+
 
 /* don't need a rows DOWN
 // now make rowsDown
@@ -79,23 +89,34 @@ fragment.appendChild(repeatDown);
 // now make multiplyRows - or in this case without a rows down, make add rows by self
 
 
-function addRowsBySelf(b) {
 
-    b = 16;
+function makeBox(gridSize) {
+     gridSize = 16;
+//console.log(gridSize);
+   const totalBoxes = gridSize * gridSize;
+  // console.log(totalBoxes); 256
+  const tempHoldingBox = document.createDocumentFragment();
 
-    for (let j = 0; j < b; j++) {
-   const makeBox = makeRowsAcross();
-   //console.log(makeBox); // this makes 16 makeRows Across!
-   
-  // fragment.appendChild(makeBox);
-   
- }
-// return fragment here
+    for (let j = 0; j < totalBoxes; j++) { // this means i should loop 16 times, or 16 rows
+        const repeatBoxes = make1Square();
+        repeatBoxes.classList.add("repeat-boxes");
+        //repeatBoxes.style.height = `calc(100% / ${gridSize})`;
+       // console.log(repeatBoxes.style.height);
+        //repeatBoxes.style.width = `calc(100% / ${gridSize})`;
+       // console.log(repeatBoxes.style.width);
+        //console.log(repeatBoxes);
+        tempHoldingBox.appendChild(repeatBoxes);
+}
+
+//console.log(repeatBoxes); // this only makes one single div?
+document.querySelector('.holding-box').appendChild(tempHoldingBox);
 
 }
-addRowsBySelf();
 
-//document.querySelector('.holding-box').appendChild(multiplyRows());
+makeBox();
+//console.log(addRowsBySelf());
+
+//document.querySelector('.holding-box').appendChild(addRowsBySelf());
 
 
 
