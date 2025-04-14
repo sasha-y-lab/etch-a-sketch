@@ -1,0 +1,16 @@
+.holding-box {
+    display: flex;
+     max-width: 100vw; 
+     min-height: 100vh;
+}
+
+
+#square-div {
+width: 16px;
+height: 16px;
+border-color: black;
+border-width: thin;
+border-style: solid;
+flex: 1;
+
+}
