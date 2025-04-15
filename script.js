@@ -26,7 +26,7 @@ return squareDiv;
 // this means multiply the element by itself 16 times by 16 times
 // so create a function
 
-
+const tempHoldingBox = document.createDocumentFragment();
 
 let gridSize = 16;
 
@@ -35,7 +35,7 @@ function makeBox() {
 //console.log(gridSize);
    const totalBoxes = gridSize * gridSize;
   // console.log(totalBoxes); 256
-  const tempHoldingBox = document.createDocumentFragment();
+  
 
     for (let j = 0; j < totalBoxes; j++) { // this means i should loop 16 times, or 16 rows
         const repeatBoxes = make1Square();
@@ -90,7 +90,12 @@ makeBox();
 
  //console.log(changeSquareColour);
 
+ 
+  let miniSquareDiv;
+
  changeSquareColours.forEach(changeSquareColour => {
+
+ 
 
   changeSquareColour.addEventListener('mouseover', (e) => {
                 
@@ -98,16 +103,59 @@ makeBox();
    
     e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
 
+  //  const tempPixelBox = document.createDocumentFragment();
 
-  });
+
+//let pixelGridSize = 3;
+//let totalPixelBoxSize = pixelGridSize * pixelGridSize;
+
+//for (let k = 0; k < totalPixelBoxSize; k++) { 
+
+  miniSquareDiv = document.createElement("div");
+  miniSquareDiv.setAttribute("id", "mini-square-div");
+  miniSquareDiv.textContent = "";
+  //miniSquareDiv.style.flexBasis = `calc((100% / ${pixelGridSize}) * 0.01)`;
+
+document.addEventListener('mousemove', (e) => {
+
+ 
+
+miniSquareDiv.style.left = `${e.pageX + 10}px`;
+miniSquareDiv.style.top = `${e.pageY + 10} px`;
+
+
+});
+
+
+//tempPixelBox.appendChild(miniSquareDiv);
+
+
+
+//} // for loop end
+//let allMiniSquares = document.querySelectorAll("#mini-square-div");
+//tempPixelBox.appendChild(allMiniSquares);
+//changeSquareColours.appendChild(tempPixelBox); 
+
+document.querySelector('.holding-box').appendChild(miniSquareDiv);
+
+//document.querySelector('.holding-box').appendChild(tempPixelBox);
+//return tempPixelBox;
+
+ }); // listener end
 
   changeSquareColour.addEventListener('mouseout', (e) => {
                 
    // console.log(e.target);
    e.target.style.backgroundColor = "white"; // working. 
+   //document.holdingBox.removeChild(tempPixelBox);
+
+   document.querySelectorAll(".mini-square-div");
+  miniSquareDiv.remove();
+   //changeSquareColour.removeChild
+
 // add mouse pixel trail here
 // create 3x3 grid of square divs with class name mini-square-div
-
+/*
 const tempPixelBox = document.createDocumentFragment();
 //tempPixelBox.classList.add("temp-pixel-box");
 
@@ -119,59 +167,13 @@ const miniSquareDiv = document.createElement("div");
 miniSquareDiv.setAttribute("id", "mini-square-div");
 miniSquareDiv.textContent = "";
 miniSquareDiv.style.flexBasis = `calc(100% / ${pixelGridSize})`;
-  
-//let posX = e.pageX;
- //   let posY = e.pageY;
-
-    /* did not trail
-    let miniSquareDivPos = { x: 0, y: 0 };
-    let isMiniSquareMoving = false;
-    let miniSquareTimeout;
-    let miniSquares = [];
-    let miniSquareRemovalInterval;
-
-miniSquareDivPos.x = posX;
-miniSquareDivPos.y = posY;
-miniSquareDiv.style.left = posX - miniSquareDiv.offsetWidth / 2 + "px";
-miniSquareDiv.style.top = posY - miniSquareDiv.offsetHeight / 2 + "px";
-isMiniSquareMoving = true;
-clearTimeout(miniSquareTimeout);
-miniSquareTimeout = setTimeout(() => {
-isMiniSquareMoving = false;
-  setTimeout(() => {
-    clearInterval(miniSquareRemovalInterval);
-    miniSquareRemovalInterval = setInterval(() => {
-        if (miniSquares.length > 0) {
-          let miniSquare = miniSquares.shift();
-          miniSquare.remove();
-        }
-        else {
-          clearInterval(miniSquareRemovalInterval);
-        }
-    }, 25);
-
-
-  }, 1000);
-
-}, 100);
-   
-setInterval(() => {
-if (isMiniSquareMoving) {
-  const miniSquare = document.createElement("div");
-  miniSquare.classList.add("mini-square");
-  tempPixelBox.appendChild(miniSquare);
-  miniSquare.style.left = miniSquareDivPos.x - miniSquare.offsetWidth / 2 + "px";
-  miniSquare.style.top = miniSquareDivPos.y - miniSquare.offsetHeight / 2 + "px";
-  miniSquares.push(miniSquare);
-
-}
-}, 10);
-*/
 
         tempPixelBox.appendChild(miniSquareDiv);
        // changeSquareColour.appendChild(tempPixelBox); no this adds it below it.
 
 }
+
+*/
 
 
 
