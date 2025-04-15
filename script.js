@@ -120,14 +120,53 @@ miniSquareDiv.setAttribute("id", "mini-square-div");
 miniSquareDiv.textContent = "";
 miniSquareDiv.style.flexBasis = `calc(100% / ${pixelGridSize})`;
   
-let x = e.pageX;
-    let y = e.pageY;
+//let posX = e.pageX;
+ //   let posY = e.pageY;
 
-    const eLeftPos = e.offsetLeft;
-    const eTopPos = e.offsetTop;
+    /* did not trail
+    let miniSquareDivPos = { x: 0, y: 0 };
+    let isMiniSquareMoving = false;
+    let miniSquareTimeout;
+    let miniSquares = [];
+    let miniSquareRemovalInterval;
 
-    miniSquareDiv.style.top = y - eTopPos;
-   miniSquareDiv.style.left = x - eLeftPos;
+miniSquareDivPos.x = posX;
+miniSquareDivPos.y = posY;
+miniSquareDiv.style.left = posX - miniSquareDiv.offsetWidth / 2 + "px";
+miniSquareDiv.style.top = posY - miniSquareDiv.offsetHeight / 2 + "px";
+isMiniSquareMoving = true;
+clearTimeout(miniSquareTimeout);
+miniSquareTimeout = setTimeout(() => {
+isMiniSquareMoving = false;
+  setTimeout(() => {
+    clearInterval(miniSquareRemovalInterval);
+    miniSquareRemovalInterval = setInterval(() => {
+        if (miniSquares.length > 0) {
+          let miniSquare = miniSquares.shift();
+          miniSquare.remove();
+        }
+        else {
+          clearInterval(miniSquareRemovalInterval);
+        }
+    }, 25);
+
+
+  }, 1000);
+
+}, 100);
+   
+setInterval(() => {
+if (isMiniSquareMoving) {
+  const miniSquare = document.createElement("div");
+  miniSquare.classList.add("mini-square");
+  tempPixelBox.appendChild(miniSquare);
+  miniSquare.style.left = miniSquareDivPos.x - miniSquare.offsetWidth / 2 + "px";
+  miniSquare.style.top = miniSquareDivPos.y - miniSquare.offsetHeight / 2 + "px";
+  miniSquares.push(miniSquare);
+
+}
+}, 10);
+*/
 
         tempPixelBox.appendChild(miniSquareDiv);
        // changeSquareColour.appendChild(tempPixelBox); no this adds it below it.
