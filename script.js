@@ -69,7 +69,7 @@ makeBox();
 // add an event listener to squareDiv inside a function called hovering
 // if mouse enters squareDiv, change color to black using repeatBoxes class & Changing 
 // the div’s background color using JavaScript
-// if mouse leaves squareDiv, add a trail of 3 black tiny squares decreasing in size
+// if mouse leaves squareDiv, add a mouse pixel trail effect - 3 black squares decreasing in size
 
 // The mouseenter fires when the mouse cursor is outside of an element and then moves 
 // inside the boundaries of the element. doesn't affect child elements
@@ -96,15 +96,34 @@ makeBox();
                 
    // console.log(e.target); // shows which divs are being hovered on
    
-    e.target.style.color = "black"; // not changing divs to black
+    e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
 
 
   });
 
   changeSquareColour.addEventListener('mouseout', (e) => {
                 
-    console.log(e.target);
-   // e.target.style.color = "white";
+   // console.log(e.target);
+   e.target.style.backgroundColor = "white"; // working. 
+// add mouse pixel trail here
+// create 3x3 grid of square divs with class name mini-square-div
+
+const tempPixelBox = document.createDocumentFragment();
+//tempPixelBox.classList.add("temp-pixel-box");
+
+let pixelGridSize = 3;
+let totalPixelBoxSize = pixelGridSize * pixelGridSize;
+
+for (let k = 0; k < totalPixelBoxSize; k++) { 
+const miniSquareDiv = document.createElement("div");
+miniSquareDiv.setAttribute("id", "mini-square-div");
+miniSquareDiv.textContent = "";
+miniSquareDiv.style.flexBasis = `calc(100% / ${pixelGridSize})`;
+  
+        tempPixelBox.appendChild(miniSquareDiv);
+        changeSquareColour.appendChild(tempPixelBox);
+
+}
 
 
   });

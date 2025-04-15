@@ -31,3 +31,20 @@ aspect-ratio: 1;
 
 }
 
+/*
+mini-square-div: transition the opacity over a duration of 2 seconds, with a 0.4 second delay. 
+We also transition the changes to transform over 0.8 seconds, with no delay.
+*/
+
+#mini-square-div {
+box-sizing: border-box;
+aspect-ratio: 1;
+background-color: grey;
+transition: opacity 2s ease 0.4s, transform 0.8s ease;
+transform: scale(1);
+}
+
+#mini-square-div:hover {
+    transition: opacity 0.2s ease;
+  transform: scale(1.04);
+}
