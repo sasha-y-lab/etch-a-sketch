@@ -16,15 +16,7 @@ return squareDiv;
 };
 //make1Square();
 
-//document.querySelector('.holding-box').appendChild(make1Square());
-
-// create document fragment so whatever inside stays in memory
-
-
-
-// now that 1 square div is created i need to create 16 rows of 16 boxes
-// this means multiply the element by itself 16 times by 16 times
-// so create a function
+// make grid
 
 const tempHoldingBox = document.createDocumentFragment();
 
@@ -59,29 +51,6 @@ return tempHoldingBox;
 makeBox();
 
 
-// Set up a “hover” effect so that the grid divs change color when your 
-// mouse passes over them, leaving a (pixelated) trail through your grid
-
-// Hint: “Hovering” is what happens when your mouse enters a div and ends when 
-// your mouse leaves it. You can set up event listeners for either of those events 
-// as a starting point.
-
-// add an event listener to squareDiv inside a function called hovering
-// if mouse enters squareDiv, change color to black using repeatBoxes class & Changing 
-// the div’s background color using JavaScript
-// if mouse leaves squareDiv, add a mouse pixel trail effect - 3 black squares decreasing in size
-
-// The mouseenter fires when the mouse cursor is outside of an element and then moves 
-// inside the boundaries of the element. doesn't affect child elements
-
-//The mouseleave fires when the mouse cursor is over an element and then moves to the 
-// outside of the element’s boundaries. doesn't affect child elements
-
-// The mouseover fires when the mouse cursor is outside of the element and then moves 
-// inside the boundaries of the element. but affects child elements
-
-// The mouseout fires when the mouse cursor is over an element and then moves another element.
-// affects child elements
 
 
 //function hovering() {
@@ -103,43 +72,25 @@ makeBox();
    
     e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
 
-  //  const tempPixelBox = document.createDocumentFragment();
-
-
-//let pixelGridSize = 3;
-//let totalPixelBoxSize = pixelGridSize * pixelGridSize;
-
-//for (let k = 0; k < totalPixelBoxSize; k++) { 
-
-  miniSquareDiv = document.createElement("div");
-  miniSquareDiv.setAttribute("id", "mini-square-div");
-  miniSquareDiv.textContent = "";
-  //miniSquareDiv.style.flexBasis = `calc((100% / ${pixelGridSize}) * 0.01)`;
-
-document.addEventListener('mousemove', (e) => {
-
- 
-
-miniSquareDiv.style.left = `${e.pageX + 10}px`;
-miniSquareDiv.style.top = `${e.pageY + 10} px`;
-
-
-});
-
-
-//tempPixelBox.appendChild(miniSquareDiv);
+    const miniSquareDiv = document.createElement("div");
+    miniSquareDiv.classList.add("mini-square-div");
+  
+    const containerRect = document.querySelector('.holding-box').getBoundingClientRect();
+    miniSquareDiv.style.left = `${e.clientX - containerRect.left}px`;
+    miniSquareDiv.style.top = `${e.clientY - containerRect.top}px`;
+  
+    document.querySelector('.holding-box').appendChild(miniSquareDiv);
+  
+    setTimeout(() => {
+      miniSquareDiv.style.opacity = "0";
+    }, 10);
+  
+    setTimeout(() => {
+      miniSquareDiv.remove();
+    }, 500);
 
 
 
-//} // for loop end
-//let allMiniSquares = document.querySelectorAll("#mini-square-div");
-//tempPixelBox.appendChild(allMiniSquares);
-//changeSquareColours.appendChild(tempPixelBox); 
-
-document.querySelector('.holding-box').appendChild(miniSquareDiv);
-
-//document.querySelector('.holding-box').appendChild(tempPixelBox);
-//return tempPixelBox;
 
  }); // listener end
 
@@ -149,31 +100,11 @@ document.querySelector('.holding-box').appendChild(miniSquareDiv);
    e.target.style.backgroundColor = "white"; // working. 
    //document.holdingBox.removeChild(tempPixelBox);
 
-   document.querySelectorAll(".mini-square-div");
-  miniSquareDiv.remove();
-   //changeSquareColour.removeChild
+  //document.querySelectorAll(".mini-square-div");
+  //miniSquareDiv.remove();
+  // remove square after fade completes
 
-// add mouse pixel trail here
-// create 3x3 grid of square divs with class name mini-square-div
-/*
-const tempPixelBox = document.createDocumentFragment();
-//tempPixelBox.classList.add("temp-pixel-box");
 
-let pixelGridSize = 3;
-let totalPixelBoxSize = pixelGridSize * pixelGridSize;
-
-for (let k = 0; k < totalPixelBoxSize; k++) { 
-const miniSquareDiv = document.createElement("div");
-miniSquareDiv.setAttribute("id", "mini-square-div");
-miniSquareDiv.textContent = "";
-miniSquareDiv.style.flexBasis = `calc(100% / ${pixelGridSize})`;
-
-        tempPixelBox.appendChild(miniSquareDiv);
-       // changeSquareColour.appendChild(tempPixelBox); no this adds it below it.
-
-}
-
-*/
 
 
 
