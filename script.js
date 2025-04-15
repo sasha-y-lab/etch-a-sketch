@@ -120,10 +120,20 @@ miniSquareDiv.setAttribute("id", "mini-square-div");
 miniSquareDiv.textContent = "";
 miniSquareDiv.style.flexBasis = `calc(100% / ${pixelGridSize})`;
   
+let x = e.pageX;
+    let y = e.pageY;
+
+    const eLeftPos = e.offsetLeft;
+    const eTopPos = e.offsetTop;
+
+    miniSquareDiv.style.top = y - eTopPos;
+   miniSquareDiv.style.left = x - eLeftPos;
+
         tempPixelBox.appendChild(miniSquareDiv);
-        changeSquareColour.appendChild(tempPixelBox);
+       // changeSquareColour.appendChild(tempPixelBox); no this adds it below it.
 
 }
+
 
 
   });
