@@ -146,8 +146,18 @@ function hovering() {
    // console.log(e.target); // shows which divs are being hovered on
    
     // e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
+    //let currentOpacity = parseFloat(e.target.style.opacity) || 0;
+    //let opacity = 0;
+//opacity -= 0.1;
+    e.target.style.backgroundColor = randomizeColour(); //black
+    e.target.style.transition = "opacity 1s ease";
+    e.target.style.opacity = 0.1;
+   // }
 
-    e.target.style.backgroundColor = randomizeColour();
+   setTimeout(() => {
+    e.target.style.opacity = 1;
+  }, 1000);
+
 
     const miniSquareDiv = document.createElement("div");
     miniSquareDiv.classList.add("mini-square-div");
@@ -157,6 +167,7 @@ function hovering() {
     miniSquareDiv.style.top = `${e.clientY}px`; // - containerRect.top
   
     document.querySelector('.holding-box').appendChild(miniSquareDiv);
+  
   
     setTimeout(() => {
       miniSquareDiv.style.opacity = "0";
@@ -175,11 +186,7 @@ function hovering() {
                 
    // console.log(e.target);
    e.target.style.backgroundColor = "white"; // working. 
-   //document.holdingBox.removeChild(tempPixelBox);
-
-  //document.querySelectorAll(".mini-square-div");
-  //miniSquareDiv.remove();
-  // remove square after fade completes
+   e.target.style.opacity = 1;
 
 
 
@@ -274,4 +281,39 @@ function randomizeColour() {
   return randomColour
 }
 randomizeColour();
-//let randomColour = randomizeColour();
+
+
+// each interaction darkens the square by 10%. The goal is to 
+// achieve a fully black (or completely colored) square in only ten interactions.
+
+
+/*
+function darkenBy10() {
+  
+  let updateRepeatBoxs = document.querySelectorAll(".repeat-boxes");
+
+    updateRepeatBoxs.forEach(updateRepeatBox => {
+
+      let listenToDarken = updateRepeatBox.addEventListener("mouseover", function() {
+let opacity = 0.1;
+opacity += 0.1;
+let changeBgColour = randomizeColour();
+
+ //for (let a = 0; a < 10; a++) {
+
+      updateRepeatBox.backgroundColor = changeBgColour;
+      updateRepeatBox.style.opacity = opacity;
+      updateRepeatBox.style.transition = "opacity 0.5s ease";
+
+ //}
+
+    });
+    return listenToDarken;
+ });
+//}
+
+
+}
+darkenBy10();
+
+*/
