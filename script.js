@@ -44,6 +44,8 @@ function newGrid() {
 newGrid();
 */
 
+const box4HoldingBox = document.createElement("div");
+box4HoldingBox.classList.add("box4holdingbox");
 
 const holdingBox = document.querySelector(".holding-box");
 
@@ -72,39 +74,54 @@ let defaultBoxSize = 16;
 
 let gridSize = defaultBoxSize;  
 //console.log(gridSize);
-   const totalBoxes = gridSize * gridSize;
+   let totalBoxes = gridSize * gridSize;
   // console.log(totalBoxes); 256
   let repeatBoxes;
 
 
-function makeBox(gridSize) {
+function makeBox() {
   
  
-  holdingBox.replaceChildren();
+  
 
     for (let j = 0; j < totalBoxes; j++) { // this means i should loop 16 times, or 16 rows
         repeatBoxes = make1Square();
         repeatBoxes.classList.add("repeat-boxes");
-       // repeatBoxes.style.height = `calc(100% / ${gridSize})`;
+      // repeatBoxes.style.height = `calc(100% / ${gridSize})`;
+     // repeatBoxes.style.height = `calc(100% * (1 / ${gridSize}))`;
        // console.log(repeatBoxes.style.height);
-       // repeatBoxes.style.width = `calc(100% / ${gridSize})`;
+      //  repeatBoxes.style.width = `calc(100% / ${gridSize})`;
+      //repeatBoxes.style.width = `calc(100% * (1 / ${gridSize}))`;
       // console.log(repeatBoxes.style.width);
-      repeatBoxes.style.flexBasis = `calc(100% / ${gridSize})`;
-      
+     repeatBoxes.style.flexBasis = `calc(100% / ${gridSize})`;
+
+     /* leave this for now. i dont think the problem is grid size
+     if (gridSize >= 16) {
+      repeatBoxes.style.flexBasis = `calc(100% * (1 / ${gridSize}))`;
+     // repeatBoxes.style.flexBasis = Math.floor(600 / gridSize) + 'px';
+     } else if (gridSize < 15) {
+      repeatBoxes.style.width = `calc((100% / ${gridSize}) - 2px)`;
+      repeatBoxes.style.height = `calc((100% / ${gridSize}) - 10px)`;
+     }
+
+     */
         //console.log(repeatBoxes);
         tempHoldingBox.appendChild(repeatBoxes);
       
 }
 
 //console.log(repeatBoxes); // this only makes one single div?
-document.querySelector('.holding-box').appendChild(tempHoldingBox);
+holdingBox.appendChild(tempHoldingBox);
 
 
+const allBoxes = document.querySelectorAll(".repeat-boxes");
 
-return tempHoldingBox;
+return allBoxes;
+
+
 }
 
-makeBox(gridSize);
+makeBox();
 
 
 
@@ -171,6 +188,11 @@ function hovering() {
 }
 hovering();
 
+box4HoldingBox.appendChild(holdingBox);
+
+container.appendChild(box4HoldingBox);
+
+
 
 // button click event listener to apply function
 newGridButton.addEventListener("click", function() {
@@ -181,11 +203,27 @@ let resetGrid = parseInt(prompt("Please enter the amount of squares of your grid
 if (resetGrid > 100) {
  
   text = "Please enter a number under 100";
+} else {
+  let removeBoxs = document.querySelectorAll(".repeat-boxes");
+  
+
+  removeBoxs.forEach(removeBox => {
+    removeBox.remove();
+
+  });
+
+  //box4HoldingBox.replaceChildren();
+  
+  gridSize = resetGrid;
+  makeBox();
+  hovering();
+  
+  
+
 }
 
-gridSize = resetGrid;
-makeBox(gridSize);
+
+
 
 });
 
-container.appendChild(holdingBox);
