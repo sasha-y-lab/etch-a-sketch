@@ -145,7 +145,9 @@ function hovering() {
                 
    // console.log(e.target); // shows which divs are being hovered on
    
-    e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
+    // e.target.style.backgroundColor = "black"; // working. had color instead of backgroundColor
+
+    e.target.style.backgroundColor = randomizeColour();
 
     const miniSquareDiv = document.createElement("div");
     miniSquareDiv.classList.add("mini-square-div");
@@ -245,3 +247,31 @@ function startGrid() {
 
 }
 startGrid();
+
+
+// bonus: randomize the squares’ RGB values with each interaction.
+
+function rgb() {
+
+ let r = Math.floor(Math.random() * 255);
+ let g = Math.floor(Math.random() * 255);
+let b = Math.floor(Math.random() * 255);
+  
+  const randomrgb = `rgb(${r},${g},${b})`; // Collect all to a css color string
+//console.log(r);
+return randomrgb;
+}
+
+//let randomColour = rgb();
+rgb();
+
+function randomizeColour() {
+  let randomColour = rgb();
+
+  for (let c = 0; c < 10; c++) {
+    randomColour;
+  }
+  return randomColour
+}
+randomizeColour();
+//let randomColour = randomizeColour();
