@@ -1,4 +1,21 @@
+// Add a button on the top of the screen to regenerate grid
+
+const container = document.querySelector(".container");
+
+const btnDiv = document.createElement("div");
+btnDiv.classList.add("btn-div");
+
+const newGridButton = document.createElement("button");
+newGridButton.setAttribute("id", "reset-grid-btn");
+newGridButton.textContent = "Reset Grid";
+
+btnDiv.appendChild(newGridButton);
+
+container.appendChild(btnDiv);
+
+
 const holdingBox = document.querySelector(".holding-box");
+
 
 // create a 16x16 grid of square divs inside holding div
 
@@ -53,7 +70,7 @@ makeBox();
 
 
 
-//function hovering() {
+function hovering() {
 
  let changeSquareColours = document.querySelectorAll(".repeat-boxes");
 
@@ -75,9 +92,9 @@ makeBox();
     const miniSquareDiv = document.createElement("div");
     miniSquareDiv.classList.add("mini-square-div");
   
-    const containerRect = document.querySelector('.holding-box').getBoundingClientRect();
-    miniSquareDiv.style.left = `${e.clientX - containerRect.left}px`;
-    miniSquareDiv.style.top = `${e.clientY - containerRect.top}px`;
+    const containerRect = document.querySelector('.holding-box'); //.getBoundingClientRect()
+    miniSquareDiv.style.left = `${e.clientX}px`; //- containerRect.left
+    miniSquareDiv.style.top = `${e.clientY}px`; // - containerRect.top
   
     document.querySelector('.holding-box').appendChild(miniSquareDiv);
   
@@ -112,6 +129,7 @@ makeBox();
 
 }); // end of for loop
 
-//}
-//hovering();
+}
+hovering();
 
+container.appendChild(holdingBox);
