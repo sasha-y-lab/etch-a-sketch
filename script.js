@@ -78,22 +78,24 @@ let gridSize = defaultBoxSize;
   // console.log(totalBoxes); 256
   let repeatBoxes;
 
+  let gridWidth = 600;
 
-function makeBox() {
+
+function makeBox(gridSize, totalBoxes) {
   
- 
+ gridItemSize = gridWidth / gridSize;
   
 
     for (let j = 0; j < totalBoxes; j++) { // this means i should loop 16 times, or 16 rows
         repeatBoxes = make1Square();
         repeatBoxes.classList.add("repeat-boxes");
       // repeatBoxes.style.height = `calc(100% / ${gridSize})`;
-     // repeatBoxes.style.height = `calc(100% * (1 / ${gridSize}))`;
+     repeatBoxes.style.height = gridItemSize + "px";
        // console.log(repeatBoxes.style.height);
       //  repeatBoxes.style.width = `calc(100% / ${gridSize})`;
-      //repeatBoxes.style.width = `calc(100% * (1 / ${gridSize}))`;
+      repeatBoxes.style.width = gridItemSize + "px";
       // console.log(repeatBoxes.style.width);
-     repeatBoxes.style.flexBasis = `calc(100% / ${gridSize})`;
+     //repeatBoxes.style.flexBasis = `calc(100% / ${gridSize})`;
 
      /* leave this for now. i dont think the problem is grid size
      if (gridSize >= 16) {
@@ -121,7 +123,7 @@ return allBoxes;
 
 }
 
-makeBox();
+//makeBox(gridSize);
 
 
 
@@ -186,7 +188,7 @@ function hovering() {
 }); // end of for loop
 
 }
-hovering();
+//hovering();
 
 box4HoldingBox.appendChild(holdingBox);
 
@@ -200,23 +202,19 @@ newGridButton.addEventListener("click", function() {
 // now that the button has been clicked, ask for a prompt
 let resetGrid = parseInt(prompt("Please enter the amount of squares of your grid", "20"), 10);
 
-if (resetGrid > 100) {
+if (resetGrid > 100 || resetGrid < 1) {
  
   text = "Please enter a number under 100";
 } else {
-  let removeBoxs = document.querySelectorAll(".repeat-boxes");
   
 
-  removeBoxs.forEach(removeBox => {
-    removeBox.remove();
-
-  });
-
-  //box4HoldingBox.replaceChildren();
+  resetAll();
   
   gridSize = resetGrid;
-  makeBox();
-  hovering();
+  totalBoxes = gridSize * gridSize; // must redeclare totalBoxes as it wasn't calculating
+  //makeBox(totalBoxes);
+  //hovering();
+  startGrid();
   
   
 
@@ -227,3 +225,23 @@ if (resetGrid > 100) {
 
 });
 
+
+function resetAll() {
+
+  let removeBoxs = document.querySelectorAll(".repeat-boxes");
+  
+
+  removeBoxs.forEach(removeBox => {
+    removeBox.remove();
+
+  });
+
+}
+
+function startGrid() {
+ 
+  makeBox(gridSize, totalBoxes);
+  hovering();
+
+}
+startGrid();
